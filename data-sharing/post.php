@@ -1,23 +1,16 @@
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title></title>
-  </head>
-  <body>
+<?php
+if ($_SERVER["REQUEST_METHOD"]=="POST") {
+    $username = $_POST['username'];
+    if (empty($username)) {
+        echo "Please fill in your name.<br><br>";
+    }else {
+        echo htmlentities("Welcome, ".$username."!");
+    }
+}
+?>
 
-    <form id="form" method="POST" action="" onsubmit="">
-
-      <label for="username">Username</label><br>
-      <input type="text" name="username" id="username" maxlength="20" placeholder="John123" autofocus required><br>
-      <input type="submit" value="Submit" id="submit">
-    </form>
-
-    <?php
-      if (!empty($_POST)) {
-        echo "<div>"."Welcome ".$_POST["username"]."!";
-      }
-     ?>
-
-  </body>
-</html>
+<form method="post" action="<?php echo $_SERVER['PHP_SELF'];?>">
+  Username:<br>
+  <input type="text" name="username" placeholder="enter username..."><br>
+  <input type="submit" value="Submit">
+</form>
